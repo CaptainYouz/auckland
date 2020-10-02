@@ -31,11 +31,11 @@
 
   export default defineComponent({
     props: {
-      message: {
+      label: {
         default: '',
         type: String,
       },
-      label: {
+      message: {
         default: '',
         type: String,
       },
@@ -57,8 +57,8 @@
         validator: (value: string) => ['', 'error', 'success'].indexOf(value) !== -1,
       },
       type: {
-        type: String,
         required: true,
+        type: String,
       },
     },
     emits: {

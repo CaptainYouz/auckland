@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    jest: true,
     browser: true,
     es2020: true,
   },
@@ -25,6 +26,12 @@ module.exports = {
     },
   ],
   rules: {
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.spec.ts'],
+      },
+    ],
     'max-len': ['error', { code: 120 }],
     'vue/script-indent': ['error', 2, { baseIndent: 1 }],
     'vue/component-tags-order': ['error', {
