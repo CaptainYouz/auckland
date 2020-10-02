@@ -1,4 +1,4 @@
 # Auckland
 
-Auckland is a UI library for Vue 3 applications.
+Auckland is a minimalist UI library for Vue 3 applications.
 

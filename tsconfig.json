@@ -1,0 +1,11 @@
+{
+  "include": [
+    "playground/**/*.ts",
+    "playground/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
