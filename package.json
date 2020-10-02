@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint",
+    "lint": "eslint . --ext .js,.ts,.vue",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
@@ -25,6 +25,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "husky": "^5.0.0-alpha.6",
     "jest": "^26.4.2",
     "sass": "^1.26.11",
     "ts-jest": "^26.4.1",
