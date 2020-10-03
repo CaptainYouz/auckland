@@ -1,0 +1,40 @@
+//================================================================================================
+// @_mixins.scss
+// This file contains the shared mixins of auckland lib
+//================================================================================================
+
+//================================================================================================
+// BORDERS & BOX-SHADOWS
+//================================================================================================
+@mixin akl-border() {
+  @include akl-box-shadow-1;
+}
+
+@mixin akl-border-rounded() {
+  @include akl-border;
+  border-radius: $borderRadius;
+}
+
+@mixin akl-box-shadow($inset, $top, $left, $blur, $color) {
+  -webkit-box-shadow: $inset $top $left $blur $color;
+  -moz-box-shadow: $inset $top $left $blur $color;
+  box-shadow: $inset $top $left $blur $color;
+}
+
+@mixin akl-box-shadow-1() {
+  @include akl-box-shadow(0, 0.3rem, 0.7rem, 0, rgba(0, 0, 0, 0.15));
+}
+@mixin akl-box-shadow-1-light() {
+  @include akl-box-shadow(0, 0.3rem, 0.7rem, 0, rgba(0, 0, 0, 0.1));
+}
+@mixin akl-box-shadow-1-dark() {
+  @include akl-box-shadow(0, 0.3rem, 0.7rem, 0, rgba(0, 0, 0, 0.3));
+}
+//================================================================================================
+// BREAKPOINTS
+//================================================================================================
+@mixin is-mobile() {
+  @media only screen and (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
