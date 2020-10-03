@@ -1,3 +1,5 @@
+@import '../src/styles/includes';
+
 html {
   display: grid;
   place-items: center;
@@ -6,4 +8,8 @@ html {
 body {
   max-width: 642px;
   margin: 4rem;
+
+  @include is-mobile() {
+    margin: $size-24 $size-8;
+  }
 }

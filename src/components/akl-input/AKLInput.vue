@@ -83,6 +83,9 @@
     }
 
     &__content {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
       border-radius: $border-radius / 2;
       border: $size-1 solid $border-color;
       display: block;
