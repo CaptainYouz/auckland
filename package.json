@@ -12,6 +12,11 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CaptainYouz/auckland"
+  },
   "dependencies": {
     "marked": "^1.2.0",
     "vue": "^3.0.0-rc.1",
