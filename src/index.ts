@@ -1,3 +1,4 @@
+import './styles/index.scss';
 import * as Components from './components';
 
 export default {
