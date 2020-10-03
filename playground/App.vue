@@ -52,10 +52,9 @@
             type="text"
             placeholder="type something awesome"
           />
-          <MarkdownDiv
-            class="documentation"
-            :text="defaultVersionDocumentation"
-          />
+          <div class="documentation">
+            <MarkdownDiv :text="defaultVersionDocumentation" />
+          </div>
         </div>
       </div>
 
@@ -72,10 +71,9 @@
             label="Email"
             placeholder="your.awesome@email.com"
           />
-          <MarkdownDiv
-            class="documentation"
-            :text="labelVersionDocumentation"
-          />
+          <div class="documentation">
+            <MarkdownDiv :text="labelVersionDocumentation" />
+          </div>
         </div>
       </div>
 
@@ -93,10 +91,9 @@
             placeholder="your.awesome@email.com"
             message="we will send you a link!"
           />
-          <MarkdownDiv
-            class="documentation"
-            :text="defaultMessageVersionDocumentation"
-          />
+          <div class="documentation">
+            <MarkdownDiv :text="defaultMessageVersionDocumentation" />
+          </div>
         </div>
       </div>
 
@@ -115,10 +112,9 @@
             status="success"
             message="congrats, you just signed up!"
           />
-          <MarkdownDiv
-            class="documentation"
-            :text="successMessageVersionDocumentation"
-          />
+          <div class="documentation">
+            <MarkdownDiv :text="successMessageVersionDocumentation" />
+          </div>
         </div>
       </div>
 
@@ -137,10 +133,9 @@
             status="error"
             message="this is not a valid email!"
           />
-          <MarkdownDiv
-            class="documentation"
-            :text="errorMessageVersionDocumentation"
-          />
+          <div class="documentation">
+            <MarkdownDiv :text="errorMessageVersionDocumentation" />
+          </div>
         </div>
       </div>
     </div>
