@@ -1,25 +1,33 @@
 <template>
   <div
     class="akl-input"
-    :class="{'error': status === 'error', 'success': status === 'success'}"
+    :class="{'is-loading': isLoading, 'error': status === 'error', 'success': status === 'success'}"
   >
     <label
       v-if="label && label.length"
-      class="akl-input__label"
+      class="label"
     >
       {{ label }}
     </label>
-    <input
-      class="akl-input__content"
-      :value="modelValue"
-      :name="name"
-      :placeholder="placeholder"
-      :type="type"
-      @input="$emit('update:modelValue', $event.target.value)"
-    >
+    <div class="wrapper">
+      <input
+        class="wrapper__content"
+        :value="modelValue"
+        :name="name"
+        :placeholder="placeholder"
+        :type="type"
+        @input="$emit('update:modelValue', $event.target.value)"
+      >
+      <AKLIcon
+        v-if="isLoading"
+        animate="spin"
+        class="loading"
+        name="spinner"
+      />
+    </div>
     <span
       v-if="message"
-      class="akl-input__message"
+      class="message"
     >
       {{ message }}
     </span>
@@ -28,9 +36,16 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
+  import AKLIcon from '../akl-icon/AKLIcon.vue';
 
   export default defineComponent({
+    components: {
+      AKLIcon,
+    },
     props: {
+      isLoading: {
+        type: Boolean,
+      },
       label: {
         default: '',
         type: String,
@@ -76,46 +91,80 @@
     justify-content: center;
     position: relative;
 
-    &__label {
+    .label {
       display: block;
       font-weight: 500;
       padding-bottom: $size-2;
       font-size: $text-base;
     }
 
-    &__content {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      border-radius: $border-radius / 2;
-      border: $size-1 solid $border-color;
-      display: block;
-      outline: 0;
-      padding: ($size-8 / 2) ($size-8 / 2);
+    .wrapper {
+      position: relative;
 
-      &:focus { border-color: $blue; }
+      &__content {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: $border-radius / 2;
+        border: $size-1 solid $border-color;
+        display: block;
+        outline: 0;
+        padding: ($size-8 / 2) ($size-8 / 2);
+        width: 100%;
+
+        &:focus { border-color: $blue; }
+      }
     }
 
-    &__message {
+    .loading {
+      position: absolute;
+      right: $size-4;
+      top: $size-4;
+      color: $dark-blue;
+      bottom: 0;
+    }
+
+    .message {
       padding-top: $size-2;
       font-size: $text-sm;
     }
 
+    &.is-loading {
+      .wrapper__content {
+        animation-name: border-animation;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+    }
+
     &.success {
-      .akl-input__content {
+      .wrapper__content {
         border-color: $dark-green;
       }
-      .akl-input__message {
+      .message {
         color: $dark-green;
       }
     }
 
     &.error {
-      .akl-input__content {
+      .wrapper__content {
         border-color: $dark-red;
       }
-      .akl-input__message {
+      .message {
         color: $dark-red;
+      }
+    }
+
+    @keyframes border-animation {
+      0% {
+        border-color: $blue;
+      }
+      50% {
+        border-color: $dark-blue;
+      }
+      100% {
+        border-color: $blue;
       }
     }
   }

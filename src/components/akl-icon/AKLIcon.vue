@@ -3,7 +3,7 @@
     :aria-labelledby="name"
     :data-icon="$props.name"
     class="akl-icon"
-    :class="'size-' + $props.size"
+    :class="[animate, 'size-' + $props.size]"
     role="img"
     viewBox="0 0 512 512"
     xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +22,10 @@
 
   export default defineComponent({
     props: {
+      animate: {
+        type: String,
+        default: '',
+      },
       name: {
         type: String,
         required: true,
@@ -52,6 +56,17 @@
     }
     &.size-l {
       width: $size-8;
+    }
+
+    &.spin {
+      animation: spin 1s infinite;
+    }
+
+    @keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+      }
     }
   }
 </style>

@@ -178,6 +178,26 @@
           </div>
         </div>
       </div>
+
+      <div class="component__playground">
+        <div class="playground__title">
+          <hr-label type="secondary">
+            loading mode
+          </hr-label>
+        </div>
+        <div class="playground__content">
+          <AKLInput
+            v-model="successMessageVersion"
+            type="text"
+            label="Email"
+            placeholder="your.awesome@email.com"
+            :is-loading="true"
+          />
+          <div class="documentation">
+            <MarkdownDiv :text="errorMessageVersionDocumentation" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
