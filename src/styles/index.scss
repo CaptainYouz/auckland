@@ -10,4 +10,12 @@ body {
   font-family: 'Work Sans';
   color: $font-color;
   font-size: 1rem;
+  background-color: $background;
+}
+
+a {
+  &,
+  &:visited {
+    color: $primary-color;
+  }
 }

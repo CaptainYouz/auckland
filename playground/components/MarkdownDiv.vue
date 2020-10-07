@@ -30,9 +30,10 @@
   @import '../src/styles/_includes';
 
   .markdown-div {
-    background-color: $background;
+    background-color: $light-grey;
+    border-radius: $size-2;
     font-family: 'Monaco';
     padding: $size-4;
-    border-radius: $size-2;
+    text-align: left;
   }
 </style>

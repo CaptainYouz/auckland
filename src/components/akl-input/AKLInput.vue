@@ -3,12 +3,12 @@
     class="akl-input"
     :class="{'error': status === 'error', 'success': status === 'success'}"
   >
-    <span
+    <label
       v-if="label && label.length"
       class="akl-input__label"
     >
       {{ label }}
-    </span>
+    </label>
     <input
       class="akl-input__content"
       :value="modelValue"
@@ -80,6 +80,7 @@
       display: block;
       font-weight: 500;
       padding-bottom: $size-2;
+      font-size: $text-base;
     }
 
     &__content {
