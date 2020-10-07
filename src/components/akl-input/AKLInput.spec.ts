@@ -9,6 +9,11 @@ const testData: Record<string, string> = {
   placeholder: 'i am a placeholder',
   type: 'text',
 };
+const componentClassName = '.akl-input';
+const contentClassName = '.wrapper__content';
+const labelClassName = '.label';
+const messageClassName = '.message';
+
 let wrapper;
 
 describe('AKLInput', () => {
@@ -26,12 +31,12 @@ describe('AKLInput', () => {
     describe('> general', () => {
       it('should have the good placeholder attribute', () => {
         expect(wrapper.props('placeholder')).toBe(testData.placeholder);
-        expect(wrapper.find('.akl-input__content').attributes('placeholder')).toBe(testData.placeholder);
+        expect(wrapper.find(contentClassName).attributes('placeholder')).toBe(testData.placeholder);
       });
 
       it('should have the good type attribute', () => {
         expect(wrapper.props('type')).toBe(testData.type);
-        expect(wrapper.find('.akl-input__content').attributes('type')).toBe(testData.type);
+        expect(wrapper.find(contentClassName).attributes('type')).toBe(testData.type);
       });
 
       it('should have the good name attribute', async () => {
@@ -39,7 +44,7 @@ describe('AKLInput', () => {
           name: testData.name,
         });
         expect(wrapper.props('name')).toBe(testData.name);
-        expect(wrapper.find('.akl-input__content').attributes('name')).toBe(testData.name);
+        expect(wrapper.find(contentClassName).attributes('name')).toBe(testData.name);
       });
 
       it('should have a default value', async () => {
@@ -48,14 +53,14 @@ describe('AKLInput', () => {
         });
 
         expect(wrapper.props('modelValue')).toBe(testData.modelValue);
-        expect(wrapper.find('.akl-input__content').element.value).toBe(testData.modelValue);
+        expect(wrapper.find(contentClassName).element.value).toBe(testData.modelValue);
       });
     });
 
     describe('> without label', () => {
       it('should not have a label', () => {
         expect(wrapper.props('label')).toBe('');
-        expect(wrapper.find('.akl-input__label').exists()).toBe(false);
+        expect(wrapper.find(labelClassName).exists()).toBe(false);
       });
     });
 
@@ -66,7 +71,7 @@ describe('AKLInput', () => {
         });
 
         expect(wrapper.props('label')).toBe(testData.label);
-        expect(wrapper.find('.akl-input__label').exists()).toBe(true);
+        expect(wrapper.find(labelClassName).exists()).toBe(true);
       });
     });
 
@@ -78,8 +83,8 @@ describe('AKLInput', () => {
 
         expect(wrapper.props('message')).toBe(testData.message);
         expect(wrapper.props('status')).toBe('');
-        expect(wrapper.find('.akl-input__message').exists()).toBe(true);
-        expect(wrapper.find('.akl-input__message').text()).toBe(testData.message);
+        expect(wrapper.find(messageClassName).exists()).toBe(true);
+        expect(wrapper.find(messageClassName).text()).toBe(testData.message);
       });
 
       it('should have a success message and the success class applied', async () => {
@@ -90,9 +95,9 @@ describe('AKLInput', () => {
 
         expect(wrapper.props('message')).toBe(testData.message);
         expect(wrapper.props('status')).toBe('success');
-        expect(wrapper.find('.akl-input.success').exists()).toBe(true);
-        expect(wrapper.find('.akl-input__message').exists()).toBe(true);
-        expect(wrapper.find('.akl-input__message').text()).toBe(testData.message);
+        expect(wrapper.find(`${componentClassName}.success`).exists()).toBe(true);
+        expect(wrapper.find(messageClassName).exists()).toBe(true);
+        expect(wrapper.find(messageClassName).text()).toBe(testData.message);
       });
 
       it('should have an error message and the error class applied', async () => {
@@ -103,9 +108,9 @@ describe('AKLInput', () => {
 
         expect(wrapper.props('message')).toBe(testData.message);
         expect(wrapper.props('status')).toBe('error');
-        expect(wrapper.find('.akl-input.error').exists()).toBe(true);
-        expect(wrapper.find('.akl-input__message').exists()).toBe(true);
-        expect(wrapper.find('.akl-input__message').text()).toBe(testData.message);
+        expect(wrapper.find(`${componentClassName}.error`).exists()).toBe(true);
+        expect(wrapper.find(messageClassName).exists()).toBe(true);
+        expect(wrapper.find(messageClassName).text()).toBe(testData.message);
       });
 
       it('should not accept other type of status besides "error" and "succes" or empty value', async () => {
@@ -120,7 +125,7 @@ describe('AKLInput', () => {
 
     describe('> emits', () => {
       it('should emit event "update:modelValue" on input value change', async () => {
-        await wrapper.find('.akl-input__content').setValue(testData.modelValue);
+        await wrapper.find(contentClassName).setValue(testData.modelValue);
 
         expect(wrapper.emitted()).toHaveProperty('update:modelValue');
       });
