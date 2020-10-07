@@ -33,6 +33,46 @@
 
     <div class="component">
       <div class="component__name">
+        <hr-label>AKLIcon</hr-label>
+      </div>
+
+      <div class="component__description">
+        AKLIcon is the input component of Auckland Library
+      </div>
+
+      <div
+        v-for="size in ['s','m','l']"
+        :key="size"
+        class="component__playground"
+      >
+        <div class="playground__title">
+          <hr-label type="secondary">
+            size {{ size === 'm' ? size + ' (default)' : size }}
+          </hr-label>
+        </div>
+        <div class="playground__content icons">
+          <div
+            v-for="iconName in iconsNameList"
+            :key="iconName"
+            class="icon"
+          >
+            <AKLIcon
+              :name="iconName"
+              :size="size"
+            />
+            <span class="icon__label">
+              {{ iconName }}
+            </span>
+          </div>
+          <div class="documentation">
+            <MarkdownDiv :text="iconDocumentation(size)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component">
+      <div class="component__name">
         <hr-label>AKLInput</hr-label>
       </div>
 
@@ -143,10 +183,11 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, computed } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import packageJson from '../package.json';
   import HrLabel from './components/HrLabel.vue';
   import MarkdownDiv from './components/MarkdownDiv.vue';
+  import Icons from '../src/components/akl-icon/icons';
 
   export default defineComponent({
     components: {
@@ -160,31 +201,24 @@
       const defaultMessageVersion = ref('');
       const successMessageVersion = ref('bruce.wayne@wayneenteprise.com');
       const errorMessageVersion = ref('bane@league.of.shadow');
+      const iconsNameList = Object.keys(Icons);
 
-      const defaultVersionDocumentation = computed(() => `
-    // in your template
-
+      const defaultVersionDocumentation = `
     <AKLInput
       v-model="defaultVersion"
       type="text"
       placeholder="type something awesome"
     />
-      `);
-
-      const labelVersionDocumentation = computed(() => `
-    // in your template
-
+      `;
+      const labelVersionDocumentation = `
     <AKLInput
       v-model="labelVersion"
       type="text"
       label="Email"
       placeholder="your.awesome@email.com"
     />
-      `);
-
-      const defaultMessageVersionDocumentation = computed(() => `
-    // in your template
-
+      `;
+      const defaultMessageVersionDocumentation = `
     <AKLInput
       v-model="defaultMessageVersion"
       type="text"
@@ -192,11 +226,8 @@
       placeholder="your.awesome@email.com"
       message="we will send you a link!"
     />
-      `);
-
-      const successMessageVersionDocumentation = computed(() => `
-    // in your template
-
+      `;
+      const successMessageVersionDocumentation = `
     <AKLInput
       v-model="successMessageVersion"
       type="text"
@@ -205,11 +236,8 @@
       status="success"
       message="congrats, you just signed up!"
     />
-      `);
-
-      const errorMessageVersionDocumentation = computed(() => `
-    // in your template
-
+      `;
+      const errorMessageVersionDocumentation = `
     <AKLInput
       v-model="errorMessageVersion"
       type="text"
@@ -218,7 +246,15 @@
       status="error"
       message="this is not a valid email!"
     />
-      `);
+      `;
+      function iconDocumentation(size: string) {
+        return `
+    <AKLIcon
+      name="YOUR_ICON_NAME"
+      size=${size}
+    />
+      `;
+      }
 
       return {
         appVersion,
@@ -232,6 +268,8 @@
         defaultMessageVersionDocumentation,
         successMessageVersionDocumentation,
         errorMessageVersionDocumentation,
+        iconsNameList,
+        iconDocumentation,
       };
     },
   });
@@ -287,6 +325,7 @@
     }
 
     .component {
+      margin-bottom: $size-16;
       &__name {
         font-size: $text-xl;
         font-weight: bold;
@@ -312,6 +351,20 @@
 
             @include is-mobile {
               display: none;
+            }
+          }
+
+          &.icons {
+            text-align: center;
+            .icon {
+              display: inline-block;
+              padding: $size-4;
+              text-align: center;
+
+              &__label {
+                display: block;
+                font-size: $text-xs;
+              }
             }
           }
         }
